@@ -16,13 +16,13 @@ bookRouter.route('/Books')
         // var responseJson = {hello: "This is my api"}
         // res.json(responseJson)
 
-        // var query = {};
+        var query = req.query;
 
         // if(req.query.genre)
         // {
         //     query.genre = req.query.genre;
         // }
-        Book.find(function(err,books){
+        Book.find(query, function(err,books){
             if(err)
                 res.status(500).send(err);
             else
