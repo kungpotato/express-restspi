@@ -16,12 +16,14 @@ bookRouter.route('/Books')
         // var responseJson = {hello: "This is my api"}
         // res.json(responseJson)
 
-        var query = req.query;
+        var query = {};
 
-        // if(req.query.genre)
-        // {
-        //     query.genre = req.query.genre;
-        // }
+        if(req.query.genre)
+        // ถ้ามีค่าให้แสดง
+        {
+            query.genre = req.query.genre;
+        }
+
         Book.find(query, function(err,books){
             if(err)
                 res.status(500).send(err);
