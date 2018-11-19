@@ -18,8 +18,9 @@ var bookRouter = express.Router();
 bookRouter.route('/Books')
     .post((req, res)=>{
         var book = new Book(req.body) // ต้องลง body-parser ก่อน
-        console.log(book)
-        res.send(book)
+        //console.log(book)
+        book.save()
+        res.status(201).send(book) // 201 is created ส่ง id กลับไปหาคน call
     })
     .get((req,res)=>{
         // var responseJson = {hello: "This is my api"}
