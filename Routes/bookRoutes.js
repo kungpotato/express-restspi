@@ -3,32 +3,17 @@ var express = require('express');
 var routes = function(Book){
     var bookRouter = express.Router();
 
+    var bookController = require('../Controllers/bookController')(Book)
+
     bookRouter.route('/')
-        .post((req, res)=>{
-            var book = new Book(req.body) // ต้องลง body-parser ก่อน
-            //console.log(book)
-            book.save()
-            res.status(201).send(book) // 201 is created ส่ง id กลับไปหาคน call
-        })
-        .get((req,res)=>{
-            // var responseJson = {hello: "This is my api"}
-            // res.json(responseJson)
-
-            var query = {};
-
-            if(req.query.genre)
-            // ถ้ามีค่าให้แสดง
-            {
-                query.genre = req.query.genre;
-            }
-
-            Book.find(query, function(err,books){
-                if(err)
-                    res.status(500).send(err);
-                else
-                    res.json(books);
-            });
-        });
+        // .post((req, res)=>{
+        //     var book = new Book(req.body) // ต้องลง body-parser ก่อน
+        //     //console.log(book)
+        //     book.save()
+        //     res.status(201).send(book) // 201 is created ส่ง id กลับไปหาคน call
+        // })
+        .post(bookController.post)
+        .get(bookController.get);
 
     bookRouter.use('/:bookId', function(req,res,next){
         Book.findById(req.params.bookId, function(err,book){
