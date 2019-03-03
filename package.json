@@ -10,12 +10,17 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^3.0.4",
     "body-parser": "1.18.3",
+    "cors": "^2.8.5",
     "express": "4.16.4",
+    "express-session": "^1.15.6",
     "gulp": "3.9.1",
     "gulp-mocha": "6.0.0",
     "gulp-nodemon": "2.4.1",
-    "mongoose": "5.3.12",
+    "mongoose": "^5.4.7",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "should": "13.2.3",
     "sinon": "7.1.1"
   },
