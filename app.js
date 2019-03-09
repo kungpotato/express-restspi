@@ -6,6 +6,8 @@ var express = require('express'),
     LocalStrategy = require('passport-local').Strategy,
     session = require('express-session')
 
+var RedisStore = require('connect-redis')(express)
+
 var dbURI='mongodb://kungpotato:kungPRS2008@ds037283.mlab.com:37283/db_mfcaa';
 var db
 db = mongoose.connect(dbURI,{useNewUrlParser: true},function(err){    
@@ -36,17 +38,30 @@ var modelUser = require('./models/MasterUser');
 // *******************************************
 var app = express();
 app.use(cors());
+app.set('trust proxy', 1);
 
 var port = process.env.PORT || 3000;
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
+
 app.use(session({
-  secret: 'potato',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}))
+cookie:{
+    secure: true,
+    maxAge:60000
+       },
+store: new RedisStore(),
+secret: 'secret',
+saveUninitialized: true,
+resave: false
+}));
+app.use(function(req,res,next){
+if(!req.session){
+    return next(new Error('Oh no')) //handle error
+}
+next() //otherwise continue
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 
