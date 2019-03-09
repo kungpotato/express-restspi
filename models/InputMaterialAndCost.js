@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var InputMaterialAndCost = new Schema({
-	periodCode: {String},  // running
+	periodCode: {type: String},  // running
 	department: {type: String},
     dataTable:{type: Array},
 });
