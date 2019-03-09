@@ -1,6 +1,9 @@
 {
   "name": "express-restapi",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.14.2"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
