@@ -56,11 +56,11 @@ app.use(passport.session())
 
 passport.use(new LocalStrategy(
   (username, password, done) => {
-    modelUser.findOne({ username: username }, function (err, user) {
+    modelUser.findOne({ username: username }, (err, user) => {
       // console.log(user)
       if (err) { return done(err) }
       if (!user) { return done(null, false) }
-      if (!user.verifyPassword(password)) { return done(null, false); }
+      if (!user.verifyPassword(password)) { return done(null, false) }
 
       return done(null, user)
     })
