@@ -2,7 +2,6 @@ var express = require('express')
 
 var routes = (InputMaterialAndCost) => {
   var inputMaterialAndCostRouter = express.Router()
-
   var inputMaterialAndCostController = require('../Controllers/InputMaterialAndCostController')(InputMaterialAndCost)
 
   inputMaterialAndCostRouter.route('/')

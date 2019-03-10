@@ -2,7 +2,6 @@ var express = require('express')
 
 var routes = (User) => {
   var UserRouter = express.Router()
-
   var UserController = require('../Controllers/UserController')(User)
 
   UserRouter.route('/')

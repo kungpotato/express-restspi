@@ -1,9 +1,9 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+var Schema = mongoose.Schema
 
 var MasterMaterial = new Schema({
-    material: {type: String},
-    isChecked: {type: Boolean, default: false }
-});
+  material: { type: String },
+  isChecked: { type: Boolean, default: false }
+})
 
-module.exports= mongoose.model('MasterMaterial', MasterMaterial);
+module.exports = mongoose.model('MasterMaterial', MasterMaterial)

@@ -2,7 +2,6 @@ var express = require('express')
 
 var routes = (Material) => {
   var MaterialRouter = express.Router()
-
   var MaterialController = require('../Controllers/MaterialController')(Material)
 
   MaterialRouter.route('/')
