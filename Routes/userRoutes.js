@@ -1,16 +1,15 @@
-const express = require('express')
+var express = require('express')
 
-var routes = function(User){
+var routes = (User) => {
+  var UserRouter = express.Router()
 
-    var UserRouter = express.Router();
+  var UserController = require('../Controllers/UserController')(User)
 
-    var UserController = require('../Controllers/UserController')(User)
+  UserRouter.route('/')
+    .post(UserController.post)
+    .get(UserController.get)
 
-    UserRouter.route('/')
-        .post(UserController.post)
-        .get(UserController.get)
-
-    return UserRouter;
+  return UserRouter
 }
 
-module.exports = routes;
+module.exports = routes
