@@ -1,9 +1,9 @@
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+var mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
 var MasterDepartment = new Schema({
-    department: {type: String},
-    isChecked: {type: Boolean, default: false }
-});
+  department: { type: String },
+  isChecked: { type: Boolean, default: false }
+})
 
-module.exports= mongoose.model('MasterDepartment', MasterDepartment);
+module.exports = mongoose.model('MasterDepartment', MasterDepartment)

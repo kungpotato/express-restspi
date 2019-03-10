@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser')
 
 const MemoryStore = require('session-memory-store')(session)
 
-const app = express()
+var app = express()
 app.use(cors())
 
 app.use((req, res, next) => {
@@ -19,17 +19,10 @@ app.use((req, res, next) => {
   next()
 })
 
-const dbURI = 'mongodb://kungpotato:kungPRS2008@ds037283.mlab.com:37283/db_mfcaa'
+var dbURI = 'mongodb://kungpotato:kungPRS2008@ds037283.mlab.com:37283/db_mfcaa'
 mongoose.connect(dbURI, { useNewUrlParser: true }, (err) => {
   err ? console.log('Some problem with the connection ' + err) : console.log('The Mongoose connection is ready')
 })
-
-// if(process.env.ENV == 'Test'){
-//     db = mongoose.connect('mongodb://localhost/bookAPI_test');
-// }
-// else{
-//     db= mongoose.connect('mongodb://localhost/bookAPI');
-// }
 
 //  ********   Model define ***************
 var modelInputMaterialAndCost = require('./models/InputMaterialAndCost')
@@ -38,7 +31,6 @@ var modelMaterial = require('./models/MasterMaterial')
 var modelUnit = require('./models/MasterUnit')
 var modelUser = require('./models/MasterUser')
 
-// *******************************************
 var port = process.env.PORT || 3000
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -57,7 +49,6 @@ app.use(passport.session())
 passport.use(new LocalStrategy(
   (username, password, done) => {
     modelUser.findOne({ username: username }, (err, user) => {
-      // console.log(user)
       if (err) { return done(err) }
       if (!user) { return done(null, false) }
       if (!user.verifyPassword(password)) { return done(null, false) }
@@ -67,12 +58,25 @@ passport.use(new LocalStrategy(
   }
 ))
 passport.serializeUser((user, done) => {
-  // console.log('serializeUser')
   done(null, user)
 })
 passport.deserializeUser((user, done) => {
   console.log('deserializeUser')
   done(null, user)
+})
+
+app.get('/', (req, res) => {
+  res.send('welcome to web API!')
+})
+app.post('/api/login',
+  passport.authenticate('local', { session: true }),
+  (req, res) => {
+    res.send(req.session.passport.user)
+  }
+)
+app.post('/api/logout', function (req, res) {
+  req.logout()
+  req.session.destroy()
 })
 
 //  ********   Routes define ***************
@@ -88,23 +92,6 @@ app.use('/api/material', MaterialRouter)
 app.use('/api/unit', UnitRouter)
 app.use('/api/register', UserRouter)
 // *******************************************
-
-app.get('/', (req, res) => {
-  res.send('welcome to web API!')
-})
-app.post('/api/login',
-  passport.authenticate('local', { session: true }),
-  (req, res) => {
-    res.send(req.session.passport.user)
-  }
-)
-app.post('/api/logout', function (req, res) {
-  req.logout()
-  req.session.destroy()
-  // req.session.reload(function(err) {
-  //   // session updated
-  // })
-})
 
 app.listen(port, () => {
   console.log('Gulp is running my app on  PORT: ' + port)

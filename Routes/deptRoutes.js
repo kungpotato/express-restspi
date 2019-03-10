@@ -1,15 +1,15 @@
-var express = require('express');
+var express = require('express')
 
-var routes = function(Department){
-    var DepartmentRouter = express.Router();
+var routes = (Department) => {
+  var DepartmentRouter = express.Router()
 
-    var DepartmentController = require('../Controllers/DepartmentController')(Department)
+  var DepartmentController = require('../Controllers/DepartmentController')(Department)
 
-    DepartmentRouter.route('/')
-        .post(DepartmentController.post)
-        .get(DepartmentController.get)
+  DepartmentRouter.route('/')
+    .post(DepartmentController.post)
+    .get(DepartmentController.get)
 
-    return DepartmentRouter;
+  return DepartmentRouter
 }
 
-module.exports = routes;
+module.exports = routes
