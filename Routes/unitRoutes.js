@@ -1,15 +1,15 @@
-var express = require('express')
+var express = require('express');
 
-var routes = (Unit) => {
-  var UnitRouter = express.Router()
+var routes = function(Unit){
+    var UnitRouter = express.Router();
 
-  var UnitController = require('../Controllers/UnitController')(Unit)
+    var UnitController = require('../Controllers/UnitController')(Unit)
 
-  UnitRouter.route('/')
-    .post(UnitController.post)
-    .get(UnitController.get)
+    UnitRouter.route('/')
+        .post(UnitController.post)
+        .get(UnitController.get)
 
-  return UnitRouter
+    return UnitRouter;
 }
 
-module.exports = routes
+module.exports = routes;

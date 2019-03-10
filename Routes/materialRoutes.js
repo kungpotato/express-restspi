@@ -1,15 +1,15 @@
-var express = require('express')
+var express = require('express');
 
-var routes = (Material) => {
-  var MaterialRouter = express.Router()
+var routes = function(Material){
+    var MaterialRouter = express.Router();
 
-  var MaterialController = require('../Controllers/MaterialController')(Material)
+    var MaterialController = require('../Controllers/MaterialController')(Material)
 
-  MaterialRouter.route('/')
-    .post(MaterialController.post)
-    .get(MaterialController.get)
+    MaterialRouter.route('/')
+        .post(MaterialController.post)
+        .get(MaterialController.get)
 
-  return MaterialRouter
+    return MaterialRouter;
 }
 
-module.exports = routes
+module.exports = routes;

@@ -1,9 +1,9 @@
-const mongoose = require('mongoose')
-const Schema = mongoose.Schema
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
-const MasterUnit = new Schema({
-  unit: { type: String },
-  isChecked: { type: Boolean, default: false }
-})
+var MasterUnit = new Schema({
+    unit: {type: String},
+    isChecked: {type: Boolean, default: false }
+});
 
-module.exports = mongoose.model('MasterUnit', MasterUnit)
+module.exports= mongoose.model('MasterUnit', MasterUnit)

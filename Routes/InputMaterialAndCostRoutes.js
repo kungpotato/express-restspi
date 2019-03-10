@@ -1,15 +1,15 @@
-var express = require('express')
+var express = require('express');
 
-var routes = (InputMaterialAndCost) => {
-  var inputMaterialAndCostRouter = express.Router()
+var routes = function(InputMaterialAndCost){
+    var inputMaterialAndCostRouter = express.Router();
 
-  var inputMaterialAndCostController = require('../Controllers/InputMaterialAndCostController')(InputMaterialAndCost)
+    var inputMaterialAndCostController = require('../Controllers/InputMaterialAndCostController')(InputMaterialAndCost)
 
-  inputMaterialAndCostRouter.route('/')
-    .post(inputMaterialAndCostController.post)
-    .get(inputMaterialAndCostController.get)
+    inputMaterialAndCostRouter.route('/')
+        .post(inputMaterialAndCostController.post)
+        .get(inputMaterialAndCostController.get)
 
-  return inputMaterialAndCostRouter
+    return inputMaterialAndCostRouter;
 }
 
-module.exports = routes
+module.exports = routes;

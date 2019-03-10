@@ -1,10 +1,10 @@
-var mongoose = require('mongoose')
-const Schema = mongoose.Schema
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema;
 
 var InputMaterialAndCost = new Schema({
-  periodCode: { type: String },
-  department: { type: String },
-  dataTable: { type: Array }
-})
+	periodCode: {type: String},  // running
+	department: {type: String},
+    dataTable:{type: Array},
+});
 
-module.exports = mongoose.model('InputMaterialAndCost', InputMaterialAndCost)
+module.exports= mongoose.model('InputMaterialAndCost', InputMaterialAndCost);

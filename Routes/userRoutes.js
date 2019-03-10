@@ -1,15 +1,16 @@
 const express = require('express')
 
-var routes = (User) => {
-  var UserRouter = express.Router()
+var routes = function(User){
 
-  var UserController = require('../Controllers/UserController')(User)
+    var UserRouter = express.Router();
 
-  UserRouter.route('/')
-    .post(UserController.post)
-    .get(UserController.get)
+    var UserController = require('../Controllers/UserController')(User)
 
-  return UserRouter
+    UserRouter.route('/')
+        .post(UserController.post)
+        .get(UserController.get)
+
+    return UserRouter;
 }
 
-module.exports = routes
+module.exports = routes;
