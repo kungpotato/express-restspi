@@ -9,6 +9,16 @@ var express = require('express'),
 
 var MemoryStore = require('session-memory-store')(session);
 
+var app = express();
+app.use(cors());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var dbURI='mongodb://kungpotato:kungPRS2008@ds037283.mlab.com:37283/db_mfcaa';
 var db
 db = mongoose.connect(dbURI,{useNewUrlParser: true},function(err){    
@@ -37,8 +47,7 @@ var modelUnit = require('./models/MasterUnit');
 var modelUser = require('./models/MasterUser');
 
 // *******************************************
-var app = express();
-app.use(cors());
+
 
 var port = process.env.PORT || 3000;
 
@@ -54,13 +63,6 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'DELETE, PUT, GET, POST');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 
 
 passport.use(new LocalStrategy(
