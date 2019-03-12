@@ -4,7 +4,10 @@ var Schema = mongoose.Schema
 var InputMaterialAndCost = new Schema({
   periodCode: { type: String },
   department: { type: String },
-  dataTable: { type: Array }
+  dataInput: { type: Array },
+  dataOutput: { type: Array }
+},{
+	timestamps: true
 })
 
 module.exports = mongoose.model('InputMaterialAndCost', InputMaterialAndCost)

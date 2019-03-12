@@ -5,6 +5,8 @@ var Schema = mongoose.Schema
 var MasterUser = new Schema({
   username: { type: String, required: true, useCreateIndex: true },
   password: { type: String, required: true }
+},{
+	timestamps: true
 })
 
 MasterUser.methods.verifyPassword = function (password) {
