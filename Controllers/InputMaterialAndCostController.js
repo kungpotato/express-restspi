@@ -33,7 +33,8 @@ var InputMaterialAndCostController = (InputMaterialAndCost) => {
   var get = (req, res) => {
     // var query = {department: "gergerg"};
     var query = {}
-    InputMaterialAndCost.find(query, (err, data) => {
+    InputMaterialAndCost.find(query).populate('department').
+    exec(function (err, data) {
       if (err) {
         res.status(500).send(err)
       } else {
@@ -46,7 +47,7 @@ var InputMaterialAndCostController = (InputMaterialAndCost) => {
         res.json(returnData)
         // console.log(returnData)
       }
-    })
+    });
   }
   return {
     post: post,

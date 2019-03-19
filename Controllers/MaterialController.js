@@ -21,8 +21,6 @@ var MaterialController = (Material) => {
             throw err
           } else {
             console.log(doc)
-            // res.status(200)
-            // res.send(doc)
           }
         })
       }

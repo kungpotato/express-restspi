@@ -53,4 +53,4 @@ var UnitController = (Unit) => {
   }
 }
 
-module.exports = UnitController
+module.exports = UnitController;

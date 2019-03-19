@@ -65,4 +65,4 @@ var DepartmentController = (Department) => {
   }
 }
 
-module.exports = DepartmentController
+module.exports = DepartmentController;
